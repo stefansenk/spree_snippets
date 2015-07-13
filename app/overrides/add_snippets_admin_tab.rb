@@ -1,4 +1,6 @@
-Deface::Override.new(:virtual_path => "spree/admin/shared/_menu",
-                     :name => "static_snippet_admin_tab",
-                     :insert_bottom => "[data-hook='admin_tabs']",
-                     :text => "<%= tab(:snippets) %>")
+Deface::Override.new(
+  virtual_path: 'spree/layouts/admin',
+  name: 'snippet_admin_configurations_menu',
+  insert_bottom: '#main-sidebar',
+  partial: 'spree/admin/shared/snippets_sidebar_menu'
+)
