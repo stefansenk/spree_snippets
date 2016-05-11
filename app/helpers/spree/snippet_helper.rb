@@ -14,7 +14,7 @@ module Spree::SnippetHelper
     end
 
     if @snippet.nil?
-raise "Snippet '#{snippet}' not found"
+      raise "Snippet '#{snippet}' not found" if Spree::Config.snippets_raise_on_missing
     end
     return nil unless @snippet
 

@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 require 'rspec/core/rake_task'
-require 'spree/core/testing_support/common_rake'
+require 'spree/testing_support/common_rake'
 
 Bundler::GemHelper.install_tasks
 Bundler.setup

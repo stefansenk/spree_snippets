@@ -1,35 +1,38 @@
-Snippets - Compatible with Spree 0.30+
-======================================
+Spree Snippets
+==============
 
-Admin configurable chunks of content that can be rendered in any view via the SnippetsHelper#render_snippet method.
+[![Build Status](https://travis-ci.org/stefansenk/spree_snippets.svg?branch=master)](https://travis-ci.org/stefansenk/spree_snippets)
 
-note: the 0.11 compatible version is on the 0.11-stable branch.
+Admin configurable chunks of content that can be rendered in any view via the SnippetsHelper#render_text_snippet method.
+
 
 Synopsis
 --------
-  
+
     <%# in a view %>
     ...
-    <%= render_snippet('slug-name') %>
+    <%= render_text_snippet('slug-name') %>
     ...
-    <%= render_snippet(@snippet_object) %>
+    <%= render_text_snippet(@snippet_object) %>
     ...
     <% snippet_id = 26 %>
-    <%= render_snippet(snippet_id) %> 
+    <%= render_text_snippet(snippet_id) %>
 
 Installation
 ------------
 
 Add to Gemfile:
-    gem 'spree_snippets', ">= 0.5.1"
+
+    gem 'spree_snippets', github: 'stefansenk/spree_snippets', branch: 'master'
 
 Run:
-    bundle install
-    rails g spree_snippets:install
-    rake db:migrate
 
-Snippet CRUD
-------------
+    bundle install
+    bundle exec rails generate spree_snippets:install
+    bundle exec rake db:migrate
+
+Snippet Admin
+-------------
 
 1. Login to the Administration Console
 2. Click on the Configuration Tab
@@ -48,4 +51,6 @@ Or
 Snippet Settings
 ----------------
 
-To enable exceptions on missing snippets, set Spree::Config.set(:spree_snippets_raise_on_missing => true)
+To enable exceptions on missing snippets, set
+
+    Spree::Config.snippets_raise_on_missing = true
