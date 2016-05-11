@@ -5,12 +5,8 @@ ru:
         slug: Код
         content: Содержимое
 
-  spree:       
+  spree:
     snippets: Сниппеты
     snippets_desc: 'Управление сниппетами из админки через WYM editor'
     new_snippet: Новый сниппет
     editing_snippet: Редактирование сниппета
-
-    admin:
-      tab:
-        snippets: Сниппеты

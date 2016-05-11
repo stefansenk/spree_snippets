@@ -5,12 +5,8 @@ en-GB:
         slug: Slug
         content: Content
 
-  spree:       
+  spree:
     snippets: Snippets
     snippets_desc: 'Manage snippets with WYM editor'
-    new_snippet: New snippet
-    editing_snippet: Editing snippet
-
-    admin:
-      tab:
-        snippets: Snippets
+    new_snippet: New Snippet
+    editing_snippet: Editing Snippet
