@@ -1,64 +1,49 @@
 require 'spec_helper'
 require 'spree/snippets_configuration_decorator'
 
-include Spree::SnippetHelper
-
 describe Spree::SnippetHelper do
+  include Spree::SnippetHelper
 
   describe "render_text_snippet" do
 
-    before(:each) do
-      Spree::Snippet.destroy_all
+    before :each do
       Spree::Config.snippets_raise_on_missing = true
-      @snippet = Spree::Snippet.create!(:slug => "foo", :content => "<h1>Test Snippet Content</h1>")
+      @snippet = FactoryGirl.create :spree_snippet, slug: "foo", content: "<h1>Test Content</h1>"
     end
 
-    after(:each) do
-      @snippet.nil? or @snippet.destroy
+    it "should return snippet content from an id" do
+      expect(render_text_snippet(@snippet.id)).to include"<h1>Test Content</h1>"
     end
 
-    describe "when a valid snippet id is passed" do
-      it "should return snippet content rendered through the snippet/display partial" do
-        result = render_text_snippet(@snippet.id)
-        result.should eql("<div id=\"snippet_#{@snippet.id}\"><h1>Test Snippet Content</h1></div>\n")
-       end
+    it "should return snippet content from a slug" do
+      expect(render_text_snippet('foo')).to include "<h1>Test Content</h1>"
     end
 
-    describe "when a valid snippet slug is passed" do
-      it "should return snippet content rendered through the snippet/display partial" do
-        result = render_text_snippet(@snippet.slug)
-        result.should eql("<div id=\"snippet_#{@snippet.id}\"><h1>Test Snippet Content</h1></div>\n")
-      end
+    it "should return snippet content from the object" do
+      expect(render_text_snippet(@snippet)).to include "<h1>Test Content</h1>"
     end
 
-    describe "when an object that responds to .id and .content is passed" do
-      it "should return snippet content rendered through the snippet/display partial" do
-        result = render_text_snippet(@snippet)
-        result.should eql("<div id=\"snippet_#{@snippet.id}\"><h1>Test Snippet Content</h1></div>\n")
-      end
+    it "should include a div with the snippet id" do
+      expect(render_text_snippet(@snippet)).to eq("<div id=\"snippet_#{@snippet.id}\"><h1>Test Content</h1></div>\n")
     end
 
-    describe "when an invalid object is passed" do
-      it "should raise an exception" do
-        lambda { render_text_snippet(Array.new) }.should raise_error
-      end
+    it "should raise an exception for an invalid object" do
+      lambda { render_text_snippet(Array.new) }.should raise_error
     end
 
-    describe "when a nonexistent id is passed" do
-      it "should raise an exception" do
-        lambda { render_text_snippet(99999999) }.should raise_error
-      end
+    it "should raise an exception for an invalid id" do
+      lambda { render_text_snippet(99999999) }.should raise_error
     end
 
-    describe "when a nonexistent slug is passed" do
-      it "should raise an exception" do
-        lambda { render_text_snippet("this-slug-does-not-exist") }.should raise_error
-      end
+    it "should raise an exception for and invalid slug" do
+      lambda { render_text_snippet("this-slug-does-not-exist") }.should raise_error
     end
 
-    describe "when an invalid object is passed" do
-      it "should raise an exception" do
+    context "when ignoring missing snippets" do
+      before do
         Spree::Config.snippets_raise_on_missing = false
+      end
+      it "should not raise an exception for an invalid slug" do
         lambda { render_text_snippet("this-slug-does-not-exist") }.should_not raise_error
       end
     end

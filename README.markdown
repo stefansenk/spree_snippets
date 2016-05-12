@@ -9,12 +9,12 @@ Admin configurable chunks of content that can be rendered in any view via the Sn
 Synopsis
 --------
 
-    <%# in a view %>
-    ...
+Within a view:
+
     <%= render_text_snippet('slug-name') %>
-    ...
+    ... or ...
     <%= render_text_snippet(@snippet_object) %>
-    ...
+    ... or ...
     <% snippet_id = 26 %>
     <%= render_text_snippet(snippet_id) %>
 
@@ -31,26 +31,26 @@ Run:
     bundle exec rails generate spree_snippets:install
     bundle exec rake db:migrate
 
-Snippet Admin
--------------
+Snippets Admin
+--------------
 
 1. Login to the Administration Console
-2. Click on the Configuration Tab
-3. Click on the Snippets link
+2. Click on the Snippets link in the sidebar
+3. Click "New Snippet" to add a snippet
 
 Testing
-------------
+-------
 
-1. bundle exec rake test_app
-2. bundle exec rake
+    bundle exec rake test_app
+    bundle exec rake
 
-Or
+Or for test individual file:
 
-2. bundle exec rspec spec/models/spree/snippet_spec.rb for test individual file
+    bundle exec rspec spec/models/spree/snippet_spec.rb
 
 Snippet Settings
 ----------------
 
-To enable exceptions on missing snippets, set
+To enable exceptions on missing snippets, set:
 
     Spree::Config.snippets_raise_on_missing = true
