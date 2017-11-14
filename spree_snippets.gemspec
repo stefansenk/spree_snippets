@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
   s.has_rdoc = true
 
-  s.add_dependency 'spree_core', '~> 3.1.0.rc1'
+  s.add_dependency 'spree_core', '~> 3'
   # s.add_dependency 'spree_editor', "~> 3.0.0"
 
   s.add_development_dependency 'factory_girl_rails', '~> 4.7.0'
