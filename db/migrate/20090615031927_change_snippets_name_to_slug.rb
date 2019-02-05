@@ -1,4 +1,4 @@
-class ChangeSnippetsNameToSlug < ActiveRecord::Migration
+class ChangeSnippetsNameToSlug < ActiveRecord::Migration[4.2]
   def self.up
     rename_column :snippets, :name, :slug
   end

@@ -1,4 +1,4 @@
-class ChangeSnippetsContent < ActiveRecord::Migration
+class ChangeSnippetsContent < ActiveRecord::Migration[4.2]
   def self.up
     change_column  :snippets, :content, :text
   end

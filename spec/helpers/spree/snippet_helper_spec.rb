@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'spree/snippets_configuration_decorator'
 
 describe Spree::SnippetHelper do
   include Spree::SnippetHelper
@@ -8,7 +7,7 @@ describe Spree::SnippetHelper do
 
     before :each do
       Spree::Config.snippets_raise_on_missing = true
-      @snippet = FactoryGirl.create :spree_snippet, slug: "foo", content: "<h1>Test Content</h1>"
+      @snippet = FactoryBot.create :spree_snippet, slug: "foo", content: "<h1>Test Content</h1>"
     end
 
     it "should return snippet content from an id" do

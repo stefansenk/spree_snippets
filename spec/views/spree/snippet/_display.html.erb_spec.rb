@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "spree/snippets/_snippet.html.erb" do
 
-  let(:snippet) { FactoryGirl.create :spree_snippet, content: "Da Content" }
+  let(:snippet) { FactoryBot.create :spree_snippet, content: "Da Content" }
 
   context "display" do
 

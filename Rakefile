@@ -1,20 +1,21 @@
-# encoding: utf-8
+require 'bundler'
+Bundler::GemHelper.install_tasks
 
 require 'rspec/core/rake_task'
-require 'spree/testing_support/common_rake'
-
-Bundler::GemHelper.install_tasks
-Bundler.setup
+require 'spree/testing_support/extension_rake'
 
 RSpec::Core::RakeTask.new
 
-desc "Default Task"
-task :default => [:spec]
+task :default do
+  if Dir['spec/dummy'].empty?
+    Rake::Task[:test_app].invoke
+    Dir.chdir('../../')
+  end
+  Rake::Task[:spec].invoke
+end
 
-desc "Generates a dummy app for testing"
+desc 'Generates a dummy app for testing'
 task :test_app do
-  ENV['LIB_NAME'] = 'spree/api'
-  Rake::Task['common:test_app'].invoke
-  system("rails g spree_snippets:install")
-  system("bundle exec rake db:migrate RAILS_ENV=test AUTO_ACCEPT=true")
+  ENV['LIB_NAME'] = 'spree_snippets'
+  Rake::Task['extension:test_app'].invoke
 end
