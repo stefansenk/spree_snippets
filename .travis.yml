@@ -8,8 +8,8 @@ env:
   - DB=mysql
 
 gemfile:
-  - gemfiles/spree_3_2.gemfile
-  - gemfiles/spree_3_5.gemfile
+  # - gemfiles/spree_3_2.gemfile
+  # - gemfiles/spree_3_5.gemfile
   - gemfiles/spree_3_7.gemfile
   - gemfiles/spree_master.gemfile
 
@@ -20,7 +20,7 @@ script:
 rvm:
   - 2.5.1
   - 2.4.2
-  - 2.3.1
+  # - 2.3.1
 
 matrix:
   allow_failures:
