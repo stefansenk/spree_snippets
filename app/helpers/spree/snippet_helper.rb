@@ -5,7 +5,7 @@ module Spree::SnippetHelper
   def render_text_snippet(snippet)
     if snippet.respond_to?('content')
       @snippet = snippet
-    elsif snippet.kind_of?(Fixnum)
+    elsif snippet.kind_of?(Integer)
       @snippet = Spree::Snippet.find(snippet)
     elsif snippet.kind_of?(String)
       @snippet = Spree::Snippet.find_by_slug(snippet)
