@@ -30,7 +30,7 @@ module Spree::SnippetHelper
 
     [Rails.root, engine_path].each do |root|
       absolute_path = File.join(root, snippet_wrapper_path)
-      return absolute_path if File.exists?(absolute_path)
+      return absolute_path if File.exist?(absolute_path)
     end
     raise "Unable to find snippet wrapper using path '#{snippet_wrapper_path}'"
   end
